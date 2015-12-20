@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, url_for, send_from_directory
+from flask import Flask, request, redirect, url_for, send_from_directory,render_template
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = os.getcwd()+'/upload'
@@ -38,6 +38,9 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
 
+@app.route('/templates')
+def get_templates():
+    return render_template('test.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
