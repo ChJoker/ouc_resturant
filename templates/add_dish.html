@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block css %}
+    <link href="{{ url_for('static', filename='css/bootstrap-fileupload.css') }}" rel="stylesheet">
+{%endblock%}
+
+{% block body %}
+                <!-- page start-->
+ <section id="main-content">
+            <section class="wrapper site-min-height">
+                <div class="row">
+                    <div class="col-md-9">
+                        <section class="panel panel-primary">
+                            <header class="panel-heading">添加新菜品</header>
+                            <div class="panel-body">
+                                <form role="form" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label class="la-color"><i class="fa fa-book"></i> 菜名</label>
+                                        <input class="form-control" placeholder="输入菜名" name="Dname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="la-color"><i class="fa fa-book"></i> 价格</label>
+                                        <input class="form-control" placeholder="输入价格" name="Dpice">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="la-color"><i class="fa fa-book"></i> 选择类别</label>
+                                        <select class="form-control m-bot15" name="Soid">
+                                           {%for sort in sorts%}
+                                            <option value="{{sort.Soid}}">{{sort.Sname}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                   <div class="form-group">
+                                        <label class="la-color"><i class="fa fa-book"></i> 上传菜品图片</label>
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="fileupload-new thumbnail">
+                                                    <img src="img/no-image.png" alt="" />
+                                                </div>
+                                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                <div>
+                                                <span class="btn btn-white btn-file">
+                                                <span class="fileupload-new"><i class="fa fa-paper-clip"></i>选择图片</span>
+                                                <span class="fileupload-exists"><i class="fa fa-undo"></i>更换图片</span>
+                                                <input type="file" class="default" name="picture"/>
+                                                </span>
+                                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i>删除</a>
+                                                </div>
+                                            </div>
+                                            <span>请选择 .jpg / .jpge / .png / .gif 格式图片文件</span>
+                                    </div>
+                                    <button type="submit"> 确定添加</button>
+                                </form>
+                                </div>
+                        </section>
+                    </div>
+                </div>
+                </section>
+        </section>
+{% endblock %}
+
+{% block addscript %}
+   <script src="{{ url_for('static', filename='js/bootstrap-fileupload.js') }}"></script>
+{%endblock%}
+
+{% block script %}
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+{% endblock %}
