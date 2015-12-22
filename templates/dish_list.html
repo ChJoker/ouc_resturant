@@ -22,15 +22,15 @@
                               </tr>
                               </thead>
                               <tbody>
-                                <!--数据在这里显示。下面这个是例子-->
-                                <tr class="">
-                                    <td>锅包肉</td>
-                                    <td>东北菜</td>
-                                    <td>35</td>
-                                    <td><a class="btn btn-info btn-xs edit"><i class="fa fa-pencil"></i> 编辑</a></td>
-                                    <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
-                                </tr>
-                                <!--数据在这里显示。上面这个是例子-->
+                                {% for dish in dishes %}
+                                    <tr class="" >
+                                        <td>{{dish.Dname}}</td>
+                                        <td>{{dish.Sname}}</td>
+                                        <td>{{dish.Dpice}}</td>
+                                        <td><a class="btn btn-info btn-xs edit"><i class="fa fa-pencil"></i> 编辑</a></td>
+                                        <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
+                                    </tr>
+                                  {% endfor %}
                               </tbody>
                           </table>
                       </div>
