@@ -9,7 +9,7 @@ class SqlHelper(object):
     def select_excution(self, sqlstr):
         conn = pyodbc.connect(self.cs)
         curser = conn.cursor()
-        rows = curser.execute(sqlstr)
+        rows = curser.execute(sqlstr).fetchall()
         conn.close()
         return rows
 

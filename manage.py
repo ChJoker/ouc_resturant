@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from __init__ import app
-from werkzeug.utils import secure_filename
+from sqlHelper import sqlhelper
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -36,6 +36,8 @@ def uploaded_file(filename):
                                filename)
 
 
-@app.route('/templates')
+@app.route('/dishes')
 def get_templates():
-    return render_template('test.html')
+    return render_template('dish_list.html',dishes=sqlhelper.select_excution('''
+        select Did,Sname,Dname,Dpice from dish,Sort where dish.Soid=Sort.Soid;
+    '''))

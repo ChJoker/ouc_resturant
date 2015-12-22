@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <section class="panel panel-primary">
+                  <header class="panel-heading">
+                      现有菜品管理
+                  </header>
+                  <div class="panel-body">
+                      <div class="adv-table editable-table ">
+                          <div class="clearfix"></div>
+                          <div class="space15"></div>
+                          <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                              <thead>
+                              <tr>
+                                  <th>菜名</th>
+                                  <th>菜品分类</th>
+                                  <th>价格</th>
+                                  <th>操作</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                {% for dish in dishes %}
+                                    <tr class="" >
+                                        <td>{{dish.Dname}}</td>
+                                        <td>{{dish.Sname}}</td>
+                                        <td>{{dish.Dpice}}</td>
+                                        <td><a class="btn btn-info btn-xs edit"><i class="fa fa-pencil"></i> 编辑</a></td>
+                                        <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
+                                    </tr>
+                                  {% endfor %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </section>
+              <!-- page end-->
+          </section>
+      </section>
+{% endblock %}
+
+{% block script %}
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+{% endblock %}
