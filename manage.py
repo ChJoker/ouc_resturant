@@ -38,4 +38,4 @@ def uploaded_file(filename):
 
 @app.route('/templates')
 def get_templates():
-    return render_template('test.html')
+    return render_template('dish_list.html')
