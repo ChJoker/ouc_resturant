@@ -8,3 +8,4 @@ app.config['SQL_CONNECTSTRING'] = r'Driver={SQL Server Native Client 11.0};Serve
 app.config['UPLOAD_FOLDER'] = os.getcwd() + '/upload'
 
 import manage
+import Reception

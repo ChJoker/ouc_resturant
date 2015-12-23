@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: GBK -*-
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template, jsonify
 from __init__ import app
@@ -130,7 +130,7 @@ def delwaiter(Wid):
 def add_waiter():
     if request.method == 'GET':
         return render_template('add_waiter.html', Rooms=sqlhelper.select_excution("""
-            select Tname from Rtable where Tname!=N'å¤§åŽ…';
+            select Tname from Rtable where Tname!=N'´óÌü';
         """))
     result = sqlhelper.insert_or_delet("""
         insert into Waiter (Wname,Wage,wsex,Wroom) values (N'%s',%s,N'%s',N'%s');
