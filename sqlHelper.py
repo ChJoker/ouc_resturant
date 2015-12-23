@@ -16,6 +16,7 @@ class SqlHelper(object):
     def insert_or_delet(self, sqlsrt):
         conn = pyodbc.connect(self.cs)
         curser = conn.cursor()
+        print(sqlsrt)
         row = curser.execute(sqlsrt).rowcount
         conn.commit()
         conn.close()
