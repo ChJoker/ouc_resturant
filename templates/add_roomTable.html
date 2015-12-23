@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block css %}
+
+{%endblock%}
+
+{% block body %}
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <section class="panel panel-primary">
+                          <div class="panel-heading">
+                              添加包间
+                          </div>
+                          <div class="panel-body">
+                              <div class=" form">
+                                  <form class="cmxform form-horizontal tasi-form" id="commentForm" method="post" action="">
+                                      <div class="form-group ">
+                                          <label class="control-label col-lg-2">桌号：</label>
+                                          <div class="col-lg-10">
+                                              <label for="cname" class="control-label">自动生成</label>
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">包间名称：</label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control " required name="Tname"/>
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">最大可坐人数：</label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control " required name="Tsize"/>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button class="btn btn-danger" type="submit">添加</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+              </section>
+              <section class="panel panel-primary">
+                  <header class="panel-heading">
+                      包间管理
+                  </header>
+                  <div class="panel-body">
+                      <div class="adv-table editable-table ">
+                          <div class="clearfix"></div>
+                          <div class="space15"></div>
+                          <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                              <thead>
+                              <tr>
+                                  <th>名称</th>
+                                  <th>包间桌号</th>
+                                  <th>最大可坐人数</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                {% for t in Tables %}
+                                    <tr class="" data_id="{{t.Tid}}">
+                                        <th>{{t.Tname}}</th>
+                                        <td>{{t.Tid}}</td>
+                                        <td>{{t.Tsize}}</td>
+                                        <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
+                                    </tr>
+                                {% endfor %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </section>
+              <!-- page end-->
+          </section>
+      </section>
+{% endblock %}
+
+{% block addscript %}
+   <script src="{{ url_for('static', filename='js/editable-table3.js') }}"></script>
+{%endblock%}
+
+{% block script %}
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+{% endblock %}

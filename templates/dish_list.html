@@ -18,7 +18,6 @@
                                   <th>菜品分类</th>
                                   <th>价格</th>
                                   <th>操作</th>
-                                  <th>操作</th>
                               </tr>
                               </thead>
                               <tbody>
@@ -27,10 +26,9 @@
                                         <td>{{dish.Dname}}</td>
                                         <td>{{dish.Sname}}</td>
                                         <td>{{dish.Dpice}}</td>
-                                        <td><a class="btn btn-info btn-xs edit"><i class="fa fa-pencil"></i> 编辑</a></td>
                                         <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
                                     </tr>
-                                  {% endfor %}
+                                {% endfor %}
                               </tbody>
                           </table>
                       </div>

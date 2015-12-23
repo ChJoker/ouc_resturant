@@ -69,7 +69,8 @@ def add_dish():
     """ % (request.form['Soid'], request.form['Dname'], float(request.form['Dpice']), savefile))
     return redirect(url_for('dishes'))
 
-@app.route('/add_sort',methods=['GET', 'POST'])
+
+@app.route('/add_sort', methods=['GET', 'POST'])
 def add_sort():
     if request.method == 'GET':
         return render_template('add_sort.html', sorts=sqlhelper.select_excution('''
@@ -79,6 +80,7 @@ def add_sort():
         insert into Sort (Sname) values (N'%s');
     """ % (request.form['Sname']))
     return redirect(url_for('add_sort'))
+
 
 @app.route('/delet_sort/<delet_id>')
 def delet_sort(delet_id):
@@ -102,6 +104,7 @@ def delcook(Cid):
    ''' % Cid)
     return str(result)
 
+
 @app.route('/add_cook', methods=['GET', 'POST'])
 def add_cook():
     if request.method == 'GET':
@@ -113,11 +116,13 @@ def add_cook():
     """ % (request.form['Soid'], request.form['Cname'], request.form['Cage'], request.form['Csex']))
     return redirect(url_for('cookers'))
 
+
 @app.route('/waiters', methods=['GET', 'POST'])
 def waiters():
     return render_template('waiters.html', waiters=sqlhelper.select_excution('''
         select Wid,Wnum,Wname,Wage,wsex,Wroom from Waiter;
     '''))
+
 
 @app.route('/delwaiter/<Wid>')
 def delwaiter(Wid):
@@ -125,6 +130,7 @@ def delwaiter(Wid):
         delete from Waiter where Wid = %s;
    ''' % Wid)
     return str(result)
+
 
 @app.route('/add_waiter', methods=['GET', 'POST'])
 def add_waiter():
@@ -136,3 +142,35 @@ def add_waiter():
         insert into Waiter (Wname,Wage,wsex,Wroom) values (N'%s',%s,N'%s',N'%s');
     """ % (request.form['Wname'], request.form['Wage'], request.form['wsex'], request.form['Wroom']))
     return redirect(url_for('waiters'))
+
+
+@app.route('/add_hallTable', methods=['GET', 'POST'])
+def add_hallTable():
+    if request.method == 'GET':
+        return render_template('add_hallTable.html', Tables=sqlhelper.select_excution("""
+            select Tsize,Tid from Rtable where Tname=N'´óÌü';
+        """))
+    result = sqlhelper.insert_or_delet("""
+        insert into Rtable (Tsize,Tstate,Tname) values (%d,0,N'´óÌü');
+    """ % int(request.form['Tsize']))
+    return redirect(url_for('add_hallTable'))
+
+
+@app.route('/add_roomTable', methods=['GET', 'POST'])
+def add_roomTable():
+    if request.method == 'GET':
+        return render_template('add_roomTable.html', Tables=sqlhelper.select_excution("""
+            select Tname,Tsize,Tid from Rtable where Tname!=N'´óÌü';
+        """))
+    result = sqlhelper.insert_or_delet("""
+        insert into Rtable (Tsize,Tstate,Tname) values (%s,0,N'%s');
+    """ % (request.form['Tsize'], request.form['Tname']))
+    return redirect(url_for('add_roomTable'))
+
+
+@app.route('/deltable/<Tid>')
+def deltable(Tid):
+    result = sqlhelper.insert_or_delet("""
+        delete from Rtable where Tid=%s;
+    """ % Tid)
+    return str(result)
