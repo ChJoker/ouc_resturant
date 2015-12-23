@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block css %}
+    <link href="{{ url_for('static', filename='css/bootstrap-fileupload.css') }}" rel="stylesheet">
+{%endblock%}
+
+{% block body %}
+    <section id="main-content">
+            <section class="wrapper site-min-height">
+                <!-- page start-->
+                <div class="col-lg-12">
+                      <section class="panel panel-primary">
+                          <header class="panel-heading">
+                              添加新服务员
+                          </header>
+                          <div class="panel-body">
+                              <div class=" form">
+                                  <form class="cmxform form-horizontal tasi-form" id="commentForm" method="post" action="">
+                                      <div class="form-group ">
+                                          <label class="control-label col-lg-2">工号：</label>
+                                          <div class="col-lg-10">
+                                              <label for="cname" class="control-label">自动生成</label>
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">姓名：</label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control " required name="Wname"/>
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="curl" class="control-label col-lg-2">年龄：</label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control "  required name="Wage"/>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="curl" class="control-label col-lg-2">性别：</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15" name="wsex">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="curl" class="control-label col-lg-2">分配指定房间：</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15" name="Wroom">
+                                                <option value="大厅">大厅</option>
+                                                {%for room in rooms%}
+                                                    <option value="{{room.Tname}}">{{room.Tname}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button class="btn btn-danger" type="submit">添加</button>
+                                              <button class="btn btn-default" type="button">取消</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+                      </section>
+                  </div>
+                <!-- page end-->
+            </section>
+        </section>
+{% endblock %}
+
+{% block addscript %}
+   <script src="{{ url_for('static', filename='js/bootstrap-fileupload.js') }}"></script>
+{%endblock%}
+
+{% block script %}
+{% endblock %}

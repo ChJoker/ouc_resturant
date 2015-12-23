@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
+
       <section id="main-content">
           <section class="wrapper site-min-height">
               <!-- page start-->
               <section class="panel panel-primary">
                   <header class="panel-heading">
-                      现有菜品管理
+                      查看现有厨师
                   </header>
                   <div class="panel-body">
                       <div class="adv-table editable-table ">
@@ -14,23 +15,28 @@
                           <table class="table table-striped table-hover table-bordered" id="editable-sample">
                               <thead>
                               <tr>
-                                  <th>菜名</th>
-                                  <th>菜品分类</th>
-                                  <th>价格</th>
-                                  <th>操作</th>
+                                  <th>姓名</th>
+                                  <th>工号</th>
+                                  <th>年龄</th>
+                                  <th>性别</th>
+                                  <th>特殊菜品</th>
                                   <th>操作</th>
                               </tr>
                               </thead>
                               <tbody>
-                                {% for dish in dishes %}
-                                    <tr class="" data_id="{{dish.Did}}">
-                                        <td>{{dish.Dname}}</td>
-                                        <td>{{dish.Sname}}</td>
-                                        <td>{{dish.Dpice}}</td>
-                                        <td><a class="btn btn-info btn-xs edit"><i class="fa fa-pencil"></i> 编辑</a></td>
-                                        <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
-                                    </tr>
-                                  {% endfor %}
+                                <!--数据在这里显示。下面这个是例子-->
+                                {%for cooker in cookers%}
+                                <tr class="" data_id="{{cooker.Cid}}">
+                                    <td>{{ cooker.Cname}}</td>
+                                    <td>{{cooker.Cnum}}</td>
+                                    <td>{{cooker.Cage}}</td>
+                                    <td>{{cooker.Csex}}</td>
+                                    <td>{{cooker.Sname}}</td>
+                                    <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
+                                </tr>
+                                {% endfor %}
+
+                                <!--数据在这里显示。上面这个是例子-->
                               </tbody>
                           </table>
                       </div>
@@ -42,7 +48,7 @@
 {% endblock %}
 
 {% block addscript %}
-      <script src="{{ url_for('static', filename='js/editable-table.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/editable-table2.js') }}"></script>
 {% endblock %}
 
 {% block script %}

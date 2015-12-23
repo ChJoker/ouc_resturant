@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <section class="panel panel-primary">
+                  <header class="panel-heading">
+                      查看现有服务员
+                  </header>
+                  <div class="panel-body">
+                      <div class="adv-table editable-table ">
+                          <div class="clearfix"></div>
+                          <div class="space15"></div>
+                          <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                              <thead>
+                              <tr>
+                                  <th>姓名</th>
+                                  <th>工号</th>
+                                  <th>年龄</th>
+                                  <th>性别</th>
+                                  <th>特定房间</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <!--数据在这里显示。下面这个是例子-->
+                                {%for waiter in waiters%}
+                                <tr class="" data_id="{{waiter.Wid}}">
+                                    <td>{{ waiter.Wname}}</td>
+                                    <td>{{waiter.Wnum}}</td>
+                                    <td>{{waiter.Wage}}</td>
+                                    <td>{{waiter.wsex}}</td>
+                                    <td>{{waiter.Wroom}}</td>
+                                    <td><a class="btn btn-warning btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a></td>
+                                </tr>
+                                {%endfor%}
+
+                                <!--数据在这里显示。上面这个是例子-->
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </section>
+              <!-- page end-->
+          </section>
+      </section>
+{% endblock %}
+
+{% block addscript %}
+      <script src="{{ url_for('static', filename='js/editable-table2.js') }}"></script>
+{% endblock %}
+
+{% block script %}
+          jQuery(document).ready(function() {
+              EditableTable2.init();
+          });
+{% endblock %}
