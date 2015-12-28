@@ -49,18 +49,18 @@
             <ul class="sidebar-menu" id="nav-accordion">
 
                 <li class="sub-menu">
-                    <a class="active" href="javascript:;" >
+                    <a href="javascript:;" >
                         <i class="fa fa-book"></i>
                         <span>选定座位</span>
                     </a>
                     <ul class="sub">
-                        <li><a  href="/select_hall">大厅</a></li>
-                        <li><a  href="#">包间</a></li>
+                        <li><a  href="/select_room">大厅</a></li>
+                        <li><a  href="/display_bill">包间</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="/display_bill" >
+                    <a class="active" href="javascript:;" >
                         <i class="fa fa-gear"></i>
                         <span>结账</span>
                     </a>
@@ -75,25 +75,28 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
               <!-- page start-->
-              <div class="panel panel-primary">
-                  <div class="panel-heading">选择包间</div>
-                  <table class="table table-hover tb-size">
-                    <thead>
-                      <th>名称</th><th>桌号</th><th>最多可坐人数</th><th>操作</th>
-                    </thead>
-                    <!--“在餐”表示正被客人使用，“选定”表示当前空桌可以选定-->
-                      {%for t in tables%}
-                        {% if t.Tstate == 1%}
-                            <tr>
-                                <td>{{t.Tname}}</td><td>{{t.Tid}}</td> <td>{{t.Tsize}}</td> <td><button class="btn btn-xs" disabled="disabled">在餐</button></td>
-                            </tr>
-                      {% else %}
-                          <tr>
-                               <td>{{t.Tname}}</td> <td>{{t.Tid}}</td> <td>{{t.Tsize}}</td> <td><a href="/select_hall/1/{{t.Tid}}" class="btn btn-danger btn-xs">选定</a></td>
-                          </tr>
-                        {% endif %}
-                      {%endfor%}
-                  </table>
+              <div class="row">
+                  {%for key in shows%}
+                  <div class="col-lg-6">
+                    <section class="panel panel-primary">
+                      <div class="panel-heading acc-span"><span>桌号：</span>{{shows[key]['disher'][0].Tid}}&nbsp;&nbsp;&nbsp;&nbsp;<span>房间名：</span>{{shows[key]['disher'][0].Tname}}</div>
+                      <table class="table">
+                        <thead>
+                          <th>菜名</th><th>类别</th><th>状态</th><th>价格</th>
+                        </thead>
+                          {%for dish in shows[key]['disher']%}
+                        <tr>
+                            <td>{{dish.Dname}}</td><td>{{dish.Sname}}</td><td>{%if dish.nstate == 3%}完成{%else%}取消{%endif%}</td><td>{{dish.Dpice}}</td>
+                        </tr>
+                          {%endfor%}
+                      </table>
+                      <div class="acc-foot">
+                        <h5>总价格：<span>{{shows[key]['psum']}}</span></h5>
+                        <a class="btn btn-warning btn-acc-end" href="/pay_bill/{{key}}">结账</a>
+                      </div>
+                    </section>
+                  </div>
+                  {%endfor%}
               </div>
               <!-- page end-->
           </section>
@@ -112,10 +115,10 @@
     <script type="text/javascript" src="{{ url_for('static', filename='assets/data-tables/jquery.dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='assets/data-tables/DT_bootstrap.js') }}"></script>
     <script src="{{ url_for('static', filename='js/respond.min.js') }}" ></script>
-    
+
 
     <!--common script for all pages-->
-    <script src="{{ url_for('static', filename='js/common-scripts.js') }}"></script>
+    <script href="{{ url_for('static', filename='js/common-scripts.js') }}"></script>
 
 
   </body>

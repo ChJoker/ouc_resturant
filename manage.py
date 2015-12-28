@@ -15,7 +15,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    return redirect(url_for('dishes'))
+    return render_template('menu.html')
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):

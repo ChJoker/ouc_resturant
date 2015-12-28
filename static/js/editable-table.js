@@ -90,11 +90,8 @@ var EditableTable = function () {
                 }
 
                 var nRow = $(this).parents('tr')[0];
-                $.getJSON('/deldish/'+$(nRow).attr("data_id"), function(data) {
-                    if(data===1)
-                        oTable.fnDeleteRow(nRow);
-                    else alert("fail delete");
-                  });
+                oTable.fnDeleteRow(nRow);
+                alert("Deleted! Do not forget to do some ajax to sync with backend :)");
             });
 
             $('#editable-sample a.cancel').live('click', function (e) {

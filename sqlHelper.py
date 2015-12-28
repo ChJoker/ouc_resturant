@@ -23,5 +23,14 @@ class SqlHelper(object):
         conn.close()
         return row
 
+    def insert_get_seed(self, sqlsrt):
+        conn = pyodbc.connect(self.cs)
+        curser = conn.cursor()
+        row = curser.execute(sqlsrt).rowcount
+        seed_id=curser.execute('SELECT SCOPE_IDENTITY(); ').fetchone()
+        conn.commit()
+        conn.close()
+        return seed_id[0]
+
 
 sqlhelper = SqlHelper(app.config['SQL_CONNECTSTRING'])

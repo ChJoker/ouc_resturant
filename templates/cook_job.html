@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每羊餐厅管理系统</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-reset.css') }}" rel="stylesheet">
+    <!--external css-->
+    <link href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}" rel="stylesheet" />
+    <!--right slidebar-->
+    <link href="{{ url_for('static', filename='css/slidebars.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style-responsive.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-hjre.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hj-re.css') }}">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+    <![endif]-->
+</head>
+<body>
+    <section id="container" >
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="管理导航"><i class="icon-th-list"></i></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo">每羊餐厅<span>管理系统<i class="icon-th-list"></i></span> —— 厨师工作</a>
+        <!--logo end-->
+        <div class="top-nav ">
+              <ul class="nav pull-right top-menu">
+                  <li class="dropdown">
+                      <a class="top-r"  data-toggle="dropdown" href="javascript:;">
+                          厨师工号： <span>{{session.cooker['Cnum']}}</span>
+                      </a>
+                  </li>
+                  <li class="dropdown">
+                      <a class="top-r" data-toggle="dropdown" href="javascript:;">
+                          特殊菜品： <span>{{session.cooker['Sname']}}</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+
+                <li>
+                    <a class="active" href="#" >
+                        <i class="fa fa-book"></i>
+                        <span>当前需做菜</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+            <section class="wrapper site-min-height">
+                <!-- page start-->
+                <div class="row">
+                    <div class="col-lg-6">
+                    {%if row%}
+                        <div class="panel">
+                            <div class="panel-heading panel-midhead">当前需做菜</div>
+                            <div class="col-sm-6" style="border-radius:6px;margin-top:10px;">
+                                <img src="/uploads/{{row.Dpic}}" class="img-responsive">
+                            </div>
+                            <div class="order-info">
+                                <h5>菜名： <span id="order-all-price">{{row.Dname}}</span></h5>
+                                <h5>类别： {{row.Sname}}</h5>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-6">
+                                    <a class="btn btn-order btn-block"  href="/done_dish/{{row.id}}">完成制作</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a class="btn btn-order btn-block" href="/cancel_dish/{{row.id}}">缺少材料</a>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
+                    {%if not row%}
+                        <div class="jumbotron">
+                          <h1>当前没需要做的菜</h1>
+                          <p></p>
+                          <p><a class="btn btn-primary btn-lg" href="/cook_job" role="button">点击刷新</a></p>
+                        </div>
+                    {% endif%}
+                    </div>
+
+                </div>
+                <!-- page end-->
+            </section>
+    </section>
+    <!--main content end-->
+
+</section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script class="include" type="text/javascript" src="{{ url_for('static', filename='js/jquery.dcjqaccordion.2.7.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.scrollTo.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/slidebars.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nicescroll.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/respond.min.js') }}" ></script>
+
+    <!--common script for all pages-->
+    <script src="{{ url_for('static', filename='js/common-scripts.js') }}"></script>
+
+
+  </body>
+</html>

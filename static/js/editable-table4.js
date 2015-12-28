@@ -85,12 +85,10 @@ var EditableTable = function () {
                 if (confirm("Are you sure to delete this row ?") == false) {
                     return;
                 }
+
                 var nRow = $(this).parents('tr')[0];
-                $.getJSON('/deltable/'+$(nRow).attr("data_id"), function(data) {
-                    if(data===1)
-                        oTable.fnDeleteRow(nRow);
-                    else alert("fail delete");
-                  });
+                oTable.fnDeleteRow(nRow);
+                alert("Deleted! Do not forget to do some ajax to sync with backend :)");
             });
 
             $('#editable-sample a.cancel').live('click', function (e) {
