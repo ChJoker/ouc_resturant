@@ -19,14 +19,9 @@ def cookLogin():
             history.go(-1);
          </script>
          """
-    if not session.has_key('cooker'):
-        cooker = {'Cnum':Rresult[0].Cnum,'Cid':Rresult[0].Cid,'Sname':Rresult[0].Sname,'Soid':Rresult[0].Soid}
-        session.pop('cooker', None)
-        session['cooker'] = cooker
-    else:
-        cooker = {'Cnum':Rresult[0].Cnum,'Cid':Rresult[0].Cid,'Sname':Rresult[0].Sname,'Soid':Rresult[0].Soid}
-        session.pop('cooker', None)
-        session['cooker'] = cooker
+    cooker = {'Cnum':Rresult[0].Cnum,'Cid':Rresult[0].Cid,'Sname':Rresult[0].Sname,'Soid':Rresult[0].Soid}
+    session.pop('cooker', None)
+    session['cooker'] = cooker
     return redirect(url_for('cook_job'))
 
 @app.route('/cook_job')

@@ -21,6 +21,14 @@ def waiterLogin():
              history.go(-1);
             </script>
          """
+    print(Rresult)
+    if(Rresult[0].Tstate == 0):
+         return """
+            <script>
+             alert('桌子没有客人');
+             history.go(-1);
+            </script>
+         """
     if not session.has_key('menu'):
         menu = {'Tid':request.form['Tid'],'Wnum':request.form['Wnum'],'sum':0,'dishes':[],'Psum':0,'state':0}
         session.pop('menu', None)
@@ -139,10 +147,8 @@ def finish_order():
     sqlhelper.insert_or_delet("""
         update bill set Bstate = 1 where Bid = %s
     """% str(session['menu']['Bid']))
-    menu = {'Tid':session['menu']['Tid'],'Wnum':session['menu']['Wnum'],'sum':0,'dishes':[],'Psum':0,'state':0}
     session.pop('menu', None)
-    session['menu'] = menu
-    return redirect(url_for('all_dishes'))
+    return redirect(url_for('waiterLogin'))
 
 
 
